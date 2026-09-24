@@ -9,6 +9,7 @@ export default [
       "node_modules/**",
       "test-results/**",
       "playwright-report/**",
+      ".wrangler/**",
     ],
   },
   js.configs.recommended,

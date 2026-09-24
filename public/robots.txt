@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /payment/
+Disallow: /orders
+Disallow: /wishlist
+Disallow: /account
+Disallow: /dashboard
+Disallow: /login
+Disallow: /register
+Disallow: /search
+
+Sitemap: https://suitandtiefashionshop.com/sitemap.xml

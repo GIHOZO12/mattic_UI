@@ -14,6 +14,14 @@ import {
   QuantitySelector,
   Skeleton,
 } from "../components/common/UI";
+import { useSeo } from "../seo/useSeo";
+import { siteUrl } from "../components/layout/StoreLayout";
+import {
+  breadcrumbJsonLd,
+  productDescription,
+  productImage,
+  productJsonLd,
+} from "../seo/shared";
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -30,7 +38,7 @@ export default function ProductDetail() {
   const [imageIndex, setImageIndex] = useState(0);
   const { user, loading: authLoading } = useAuth();
   const { refresh, wishlist, loading: bagLoading } = useBag();
-  const { colors, settings } = useStore();
+  const { colors, settings, currency } = useStore();
   const notify = useToast();
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,6 +68,31 @@ export default function ProductDetail() {
     setQuantity(1);
     setImageIndex(0);
   }, [slug]);
+  useSeo(
+    product
+      ? {
+          title: product.name,
+          description: productDescription(product),
+          image: productImage(product, siteUrl),
+          type: "product",
+          jsonLd: [
+            productJsonLd(product, siteUrl, currency),
+            breadcrumbJsonLd(
+              [
+                { name: "Shop", path: "/shop" },
+                {
+                  name: product.category.name,
+                  path: `/shop/${product.category.slug}`,
+                },
+                { name: product.name, path: `/products/${product.slug}` },
+              ],
+              siteUrl,
+            ),
+          ],
+        }
+      : {},
+    Boolean(product),
+  );
   if (resource.loading)
     return (
       <div className="container page-space">

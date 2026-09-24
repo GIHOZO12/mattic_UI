@@ -7,9 +7,16 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    "run_worker_first": ["/api/*", "/media/*"]
+    "run_worker_first": [
+      "/api/*",
+      "/media/*",
+      "/sitemap.xml",
+      "/products/*",
+      "/shop/*"
+    ]
   },
   "vars": {
-    "BACKEND_URL": "https://mattic-production.up.railway.app"
+    "BACKEND_URL": "https://mattic-production.up.railway.app",
+    "SITE_URL": "https://suitandtiefashionshop.com"
   }
 }

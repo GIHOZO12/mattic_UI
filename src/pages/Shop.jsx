@@ -14,6 +14,7 @@ import {
   Pagination,
 } from "../components/common/UI";
 import ProductGrid from "../components/product/ProductGrid";
+import { useSeo } from "../seo/useSeo";
 
 function FilterPanel({ filters, onApply, onReset, categorySlug }) {
   const { categories, brands, sizes, colors, referenceError } = useStore();
@@ -144,6 +145,23 @@ export default function Shop() {
   const category = categories.find(
     (item) =>
       item.slug === selectedCategory || String(item.id) === selectedCategory,
+  );
+  useSeo(
+    category
+      ? {
+          title: `${category.name} for Men`,
+          description:
+            category.description?.length > 40
+              ? category.description
+              : `Shop ${category.name.toLowerCase()} for men at Suit and Tie Fashion Shop. Browse the collection, compare sizes and colours, and order online.`,
+          image: category.image,
+        }
+      : {
+          title: "Shop All Menswear",
+          description:
+            "Browse the full Suit and Tie Fashion Shop collection: suits, shirts, trousers, shoes and accessories for every occasion.",
+        },
+    !categorySlug || Boolean(category),
   );
   const params = {
     ...filters,

@@ -5,6 +5,7 @@ import StoreLayout from "./components/layout/StoreLayout";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import IconTooltips from "./components/common/IconTooltips";
 import { Button, Skeleton } from "./components/common/UI";
+import { RouteSeo } from "./seo/useSeo";
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Search = lazy(() => import("./pages/Search"));
@@ -82,6 +83,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <RouteScroll />
+      <RouteSeo />
       <IconTooltips />
       <ErrorBoundary>
         <AppProviders>

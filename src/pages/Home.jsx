@@ -20,8 +20,14 @@ import {
 } from "../components/common/UI";
 import ProductGrid from "../components/product/ProductGrid";
 import Newsletter from "../components/common/Newsletter";
+import { useSeo } from "../seo/useSeo";
 
 export default function Home() {
+  useSeo({
+    title: "Men's Suits, Shirts, Trousers & Shoes",
+    description:
+      "Shop men's suits, shirts, trousers, shoes and accessories at Suit and Tie Fashion Shop. Considered menswear for every occasion, with delivery and MTN Mobile Money payment.",
+  });
   const { categories, categoryState } = useStore();
   const newest = useResource("home-newest", (signal) =>
     productService.list({ ordering: "-created_at" }, signal),
